@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy 3D Navbar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset beberapa default styling */
+        body, ul, li, a {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Styling untuk navbar */
+        .navbar {
+            background: linear-gradient(135deg, #6a0572, #ab83a1);
+            border-bottom: 2px solid #ffd700;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .navbar-list {
+            display: flex;
+            transform-style: preserve-3d;
+        }
+
+        .navbar-item {
+            position: relative;
+            margin: 0 10px;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar-item:hover {
+            transform: translateZ(15px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-item a {
+            color: #ffd700;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        .has-submenu .submenu {
+            display: none;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .has-submenu:hover .submenu {
+            display: block;
+        }
+
+        .submenu li {
+            padding: 10px;
+        }
+
+        .submenu a {
+            color: #ffd700;
+        }
+
+        /* Dark mode styling */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .navbar {
+            background: linear-gradient(135deg, #2c003e, #6a0572);
+        }
+
+        /* Toggle switch styling */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+        }
+
+        .theme-switch {
+            display: none;
+        }
+
+        .theme-label {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .theme-label .theme-ball {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: #ffd700;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-switch:checked + .theme-label {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-switch:checked + .theme-label .theme-ball {
+            transform: translateX(30px);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <a href="#">FantasyWorld</a>
+            </div>
+            <ul class="navbar-list">
+                <li class="navbar-item"><a href="#"><i class="fas fa-dragon"></i> Home</a></li>
+                <li class="navbar-item has-submenu">
+                    <a href="#"><i class="fas fa-scroll"></i> Lore</a>
+                    <ul class="submenu">
+                        <li><a href="#">Ancient Legends</a></li>
+                        <li><a href="#">Mythical Creatures</a></li>
+                        <li><a href="#">Lost Realms</a></li>
+                    </ul>
+                </li>
+                <li class="navbar-item has-submenu">
+                    <a href="#"><i class="fas fa-hat-wizard"></i> Magic</a>
+                    <ul class="submenu">
+                        <li><a href="#">Spells</a></li>
+                        <li><a href="#">Potions</a></li>
+                        <li><a href="#">Artifacts</a></li>
+                    </ul>
+                </li>
+                <li class="navbar-item has-submenu">
+                    <a href="#"><i class="fas fa-chess-rook"></i> Kingdom</a>
+                    <ul class="submenu">
+                        <li><a href="#">Royal Families</a></li>
+                        <li><a href="#">Battles</a></li>
+                        <li><a href="#">Territories</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="theme-toggle">
+                <input type="checkbox" id="theme-switch" class="theme-switch">
+                <label for="theme-switch" class="theme-label">
+                    <span class="theme-ball"></span>
+                </label>
+            </div>
+        </div>
+    </nav>
+    
+    <script>
+        // Toggle dark/light mode
+        const themeSwitch = document.getElementById('theme-switch');
+        const body = document.body;
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeSwitch.checked = true;
+        }
+
+        themeSwitch.addEventListener('change', function () {
+            if (this.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>
