@@ -1,0 +1,269 @@
+/* Reset beberapa default styling */
+body, ul, li, a {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Styling untuk body */
+body {
+    background: url('https://via.placeholder.com/1920x1080') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'MedievalSharp', cursive;
+    transition: background-color 0.3s, color 0.3s;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Mode Gelap */
+body.dark-mode {
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+}
+
+/* Styling untuk navbar */
+.navbar {
+    perspective: 1000px;
+    background: linear-gradient(135deg, #6a0572, #ab83a1);
+    border-bottom: 2px solid #ffd700;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.3s, border-color 0.3s;
+    width: 100%;
+}
+
+body.dark-mode .navbar {
+    background: linear-gradient(135deg, #2c003e, #6a0572);
+    border-bottom: 2px solid #ffd700;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar-brand a {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffd700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-list {
+    display: flex;
+    transform-style: preserve-3d;
+    align-items: center;
+}
+
+.navbar-item {
+    transform: rotateX(15deg) rotateY(-15deg);
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 10px;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+body.dark-mode .navbar-item {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.navbar-item a {
+    color: #ffd700;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-item i {
+    margin-right: 10px;
+    color: #ffd700;
+}
+
+/* Efek hover untuk meningkatkan kesan 3D */
+.navbar-item:hover {
+    transform: rotateX(15deg) rotateY(-15deg) translateZ(20px);
+    box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.7);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .navbar-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Animasi garis bawah saat hover */
+.navbar-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #ffd700;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.navbar-item:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Submenu */
+.has-submenu {
+    position: relative;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: linear-gradient(135deg, #6a0572, #ab83a1);
+    border-radius: 5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    padding: 10px 0;
+    z-index: 1000;
+    min-width: 200px;
+}
+
+body.dark-mode .submenu {
+    background: linear-gradient(135deg, #2c003e, #6a0572);
+}
+
+.submenu li {
+    padding: 10px 20px;
+}
+
+.submenu li a {
+    color: #ffd700;
+    display: block;
+}
+
+.submenu li:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.has-submenu:hover .submenu {
+    display: block;
+}
+
+/* Toggle Switch */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch {
+    display: none;
+}
+
+.theme-label {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.theme-label i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #ffd700;
+    transition: opacity 0.3s;
+}
+
+.theme-label .fa-sun {
+    left: 8px;
+    opacity: 1;
+}
+
+.theme-label .fa-moon {
+    right: 8px;
+    opacity: 0;
+}
+
+.theme-ball {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background: #ffd700;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.theme-switch:checked + .theme-label {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.theme-switch:checked + .theme-label .fa-sun {
+    opacity: 0;
+}
+
+.theme-switch:checked + .theme-label .fa-moon {
+    opacity: 1;
+}
+
+.theme-switch:checked + .theme-label .theme-ball {
+    transform: translateX(30px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+    }
+
+    .navbar-brand {
+        margin-bottom: 20px;
+    }
+
+    .navbar-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-item {
+        margin: 10px 0;
+    }
+
+    .submenu {
+        position: static;
+        display: none;
+        width: 100%;
+    }
+
+    .has-submenu:hover .submenu {
+        display: none;
+    }
+
+    .has-submenu:focus-within .submenu {
+        display: block;
+    }
+}

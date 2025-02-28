@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy 3D Navbar with Submenu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <a href="#">FantasyWorld</a>
+            </div>
+            <ul class="navbar-list">
+                <li class="navbar-item"><a href="#"><i class="fas fa-dragon"></i> Home</a></li>
+                <li class="navbar-item has-submenu">
+                    <a href="#"><i class="fas fa-scroll"></i> Lore <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="#">History</a></li>
+                        <li><a href="#">Legends</a></li>
+                        <li><a href="#">Myths</a></li>
+                    </ul>
+                </li>
+                <li class="navbar-item has-submenu">
+                    <a href="#"><i class="fas fa-hat-wizard"></i> Magic <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="#">Spells</a></li>
+                        <li><a href="#">Potions</a></li>
+                        <li><a href="#">Artifacts</a></li>
+                    </ul>
+                </li>
+                <li class="navbar-item has-submenu">
+                    <a href="#"><i class="fas fa-chess-rook"></i> Kingdom <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="#">Castles</a></li>
+                        <li><a href="#">Nobles</a></li>
+                        <li><a href="#">Armies</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="theme-toggle">
+                <input type="checkbox" id="theme-switch" class="theme-switch">
+                <label for="theme-switch" class="theme-label">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                    <span class="theme-ball"></span>
+                </label>
+            </div>
+        </div>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
